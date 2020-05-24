@@ -1,10 +1,12 @@
+const meta = require("../metadata.json");
+
 module.exports = {
     name: "purge",
     description: "Removes an amount of messages from a channel.",
     aliases: ["remove"],
     usage: "[command] <amount>",
+    permissions: meta.role.moderation.default,
     execute(message, args) {
-        if(-args[1]) return message.reply('Please Define an Argument.')
-            message.channel.bulkDelete(args[1] + 1);
+        message.channel.bulkDelete(args[0]);
     }
 }
