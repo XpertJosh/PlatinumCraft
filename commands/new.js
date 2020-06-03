@@ -3,11 +3,10 @@ const meta = require("../metadata.json");
 module.exports = {
     name: "new",
     description: "Creates a support ticket",
-    aliases: ["ticket"],
+    aliases: ["ticket", "support"],
     execute(message, args) {
-        const guild = message.guild;
-            guild.channels.create('ticket-' + message.author.username, { 
-                type: 'text', 
+            message.guild.channels.create('ticket-' + message.author.username, { 
+                type: 'text',
                 permissionOverwrites: [
                     {
                         id: message.guild.id,
@@ -22,7 +21,9 @@ module.exports = {
                         allow: ['VIEW_CHANNEL'],
                     }
                 ]
-        });
+        }).then(channel => channel.setParent(meta.ticketCategory.id))
+        .catch(console.error());
+        
         message.reply('A support ticket has been created for you.');
     }  
     //ticket
