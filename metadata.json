@@ -1,0 +1,18 @@
+{
+    "ticketCategory": {
+        "id": "714226877161537587",
+        "name": "tickets"
+    },
+    "role": {
+        "support": {
+            "default": "support",
+            "id": "714168496828710942",
+            "description": "for people who assist with support tickets"
+        },
+        "moderation": {
+            "default": "moderator",
+            "id": "",
+            "description": "for chat moderation (e.g. purge, kick, etc)" 
+        }
+    }
+}
