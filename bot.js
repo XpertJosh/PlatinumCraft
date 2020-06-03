@@ -19,7 +19,8 @@ client.once("ready", () => {
     console.log("This bot is online...");
 });
 
-client.on("message", message => {
+
+client.on("message", message => { // command handler
     if (!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
@@ -51,6 +52,13 @@ client.on("message", message => {
         !message.member.roles.cache.some(role => role.name === meta.role.moderation.default)) {
             var reply = `You don't have the proper permissions to use this, ${message.author}.\n` +
                     `In order to use this command, you must have the ${meta.role.moderation.default} role.`;         
+            return message.channel.send(reply);
+        }
+    
+    if (command.permissions === "botAuth" &&
+        !message.author.id === config.ownerID) {
+            var reply = `You don't have the proper permissions to use this, ${message.author}.\n` +
+            `In order to use this command, you have to be the creator of the bot.`
             return message.channel.send(reply);
         }
 
