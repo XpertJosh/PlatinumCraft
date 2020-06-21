@@ -17,7 +17,7 @@ module.exports = {
                         allow: ['VIEW_CHANNEL'],
                     },
                     {
-                        id: meta.role.support.id,
+                        id: meta.role.staff.id,
                         allow: ['VIEW_CHANNEL'],
                     }
                 ]
