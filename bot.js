@@ -21,7 +21,11 @@ client.once("ready", () => {
 
 
 client.on("message", message => { // command handler
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    function isValidCommand(message) { // checks if message is valid command command
+        return (message.content.startsWith(prefix) && !message.author.bot);
+        // if the message starts with a prefix, and was not sent by a bot, returns true; otherwise returns false.
+    }
+    if (!isValidCommand(message)) {return;};
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
 
@@ -71,7 +75,7 @@ client.on("message", message => { // command handler
     const timestamps = cooldowns.get(command.name); // var that gets the Collection for triggered command
     const cooldownAmount = (command.cooldown || 3) * 1000; // 3s is default, convers to miliseconds
 
-    if (timestamps.has(message.author.id)) {
+    if (timestamps.has(message.author.id)) { // cooldowns
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
     
         if (now < expirationTime) {
