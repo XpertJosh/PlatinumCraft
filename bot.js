@@ -73,7 +73,7 @@ client.on("message", message => { // command handler
 
     const now = Date.now(); // var with current time
     const timestamps = cooldowns.get(command.name); // var that gets the Collection for triggered command
-    const cooldownAmount = (command.cooldown || 3) * 1000; // 3s is default, convers to miliseconds
+    const cooldownAmount = (command.cooldown || 3) * 1000; // 3s is default, convers to milliseconds
 
     if (timestamps.has(message.author.id)) { // cooldowns
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
