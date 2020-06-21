@@ -8,6 +8,8 @@ module.exports = {
     description: "Lists all the availible commands.",
     aliases: ["list", "commands"],
     type: "support",
+    usage: "<command>",
+    cooldown: 10,
     execute(message, args) {
         const data = []
         const { commands } = message.client;
@@ -37,7 +39,8 @@ module.exports = {
             .setColor("#0000FF")
             .setTitle(`Command List (${list.order}/${lists.length})`)
             .setAuthor("PlatinumCraft Support Bot")
-            .setDescription(`The following is a list of ${list.type} commands.`)
+            .setDescription(`The following is a list of ${list.type} commands.\n` +
+                            `To receive more information about a specic command, please type ${prefix}list <command>.`)
             .addField("Commands:", items)
             .setFooter("PlatinumCraft Bot")
             .setTimestamp();
