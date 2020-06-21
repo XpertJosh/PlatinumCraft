@@ -4,14 +4,16 @@
         "name": "tickets"
     },
     "role": {
-        "support": {
-            "default": "support",
-            "id": "714168496828710942",
-            "description": "for people who assist with support tickets"
+        "staff": {
+            "name": "staff",
+            "identifier": "Staff",
+            "id": "714237057094123570",
+            "description": "This is the basic level of staff"
         },
-        "moderation": {
-            "default": "moderator",
-            "id": "",
+        "srstaff": {
+            "name": "srstaff",
+            "identifer": "Senior Staff",
+            "id": "711987701510963302",
             "description": "for chat moderation (e.g. purge, kick, etc)" 
         }
     }
