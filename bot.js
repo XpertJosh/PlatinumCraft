@@ -41,26 +41,27 @@ client.on("message", message => { // command handler
         return message.channel.send(reply);
     } // Runs if no arguments are run in a command that requires arguments (args: true);
 
-    if (command.permissions === meta.role.support.default &&
-        !message.member.roles.cache.some(role => role.name === meta.role.support.default)) {
-            var reply = `You don't have the proper permissions to use this, ${message.author}.\n` +
-                    `In order to use this command, you must have the ${meta.role.support.default} role.`;         
-            return message.channel.send(reply);
-        }
+    function checkRole(message, perm) { // checks if a user has the required permissions to execute a command
+        var truth = (command.permissions === perm.name && // checks if the command requires the inputted role
+            !message.member.roles.cache.some(role => role.name === perm.identifier));  // and if the user has the role
+            // if the command doesn't require the role, or the user has the role, nothing happens.
+            if (truth) {
+                var reply = `You don't have the proper permissions to use this, ${message.author}. ` +
+                            `In order to use this command, you must have the ${perm.identifier} role.`;         
+                message.channel.send(reply); // sends a reply indicating that the user requires a higher role.
+            }
+            return truth;
+    }
 
-    if (command.permissions === meta.role.moderation.default &&
-        !message.member.roles.cache.some(role => role.name === meta.role.moderation.default)) {
-            var reply = `You don't have the proper permissions to use this, ${message.author}.\n` +
-                    `In order to use this command, you must have the ${meta.role.moderation.default} role.`;         
-            return message.channel.send(reply);
-        }
-    
-    if (command.permissions === "botAuth" &&
-        !message.author.id === config.ownerID) {
-            var reply = `You don't have the proper permissions to use this, ${message.author}.\n` +
-            `In order to use this command, you have to be the creator of the bot.`
-            return message.channel.send(reply);
-        }
+    if (checkRole(message, meta.role.staff)) {return;};
+    if (checkRole(message, meta.role.srstaff)) {return;};
+
+    // if (command.permissions === "botAuth" &&
+    //     !message.author.id === config.ownerID) {
+    //         var reply = `You don't have the proper permissions to use this, ${message.author}.\n` +
+    //         `In order to use this command, you have to be the creator of the bot.`
+    //         return message.channel.send(reply);
+    //     }
 
     if (!cooldowns.has(command.name)) {
         cooldowns.set(command.name, new Discord.Collection());
