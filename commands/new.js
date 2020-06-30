@@ -3,6 +3,7 @@ const meta = require("../metadata.json");
 module.exports = {
     name: "new",
     description: "Creates a support ticket",
+    type: "support",
     aliases: ["ticket", "support"],
     execute(message, args) {
             message.guild.channels.create('ticket-' + message.author.username, { 

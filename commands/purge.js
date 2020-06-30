@@ -4,6 +4,7 @@ module.exports = {
     name: "purge",
     description: "Removes an amount of messages from a channel.",
     aliases: ["remove"],
+    type: "staff",
     usage: "<amount>",
     cooldown: 10,
     permissions: "srstaff",

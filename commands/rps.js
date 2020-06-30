@@ -1,6 +1,7 @@
 module.exports = {
     name: "rps",
     description: "Simulates a game of Rock, Paper, Scissors! against AI.",
+    type: "misc",
     usage: "<input>",
     args: true,
     execute(message, args) {

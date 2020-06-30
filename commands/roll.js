@@ -2,6 +2,7 @@ module.exports = {
     name: "roll",
     description: "Returns a random number between the minimum and maximum value. Default value is 1-6.",
     aliases: ["rng", "dice"],
+    type: "misc",
     usage: "<min> <max>",
     cooldown: 1,
     execute(message, args) {

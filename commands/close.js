@@ -4,6 +4,7 @@ module.exports = {
     name: "close",
     aliases: ["end", 'finish'],
     description: "Closes the ticket that the command is sent in.",
+    type: "support",
     permissions: "staff",
     execute(message, args) {
         if (message.channel.name.startsWith("ticket")) {
